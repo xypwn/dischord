@@ -12,8 +12,8 @@
 
 ### Windows
 #### Download .exe from releases
-- [64-bit](https://github.com/xypwn/Dischord/releases/download/latest/dischord-windows-amd64.exe) (reasonably modern hardware)
-- [32-bit](https://github.com/xypwn/Dischord/releases/download/latest/dischord-windows-x86.exe) (very old hardware)
+- [64-bit](https://github.com/xypwn/dischord/releases/latest/download/dischord-windows-amd64.exe) (reasonably modern hardware)
+- [32-bit](https://github.com/xypwn/dischord/releases/latest/download/dischord-windows-x86.exe) (very old hardware)
 
 #### Preparations
 After you're done downloading, I would recommend putting the executable into a new
@@ -35,8 +35,8 @@ Now if you start the .exe again, it should just work.
 
 ### MacOS
 #### Download the executable from releases
-- [Apple silicon](https://github.com/xypwn/Dischord/releases/download/latest/dischord-macos-apple-silicon) (newer models)
-- [Intel hardware (untested)](https://github.com/xypwn/Dischord/releases/download/latest/dischord-macos-intel) (slightly older models)
+- [Apple silicon](https://github.com/xypwn/dischord/releases/latest/download/dischord-macos-apple-silicon) (newer models)
+- [Intel hardware (untested)](https://github.com/xypwn/dischord/releases/latest/download/dischord-macos-intel) (slightly older models)
 
 #### Preparations
 After you're done downloading, I would recommend putting the executable into a new
@@ -70,10 +70,10 @@ Done! Now you can just run the executable and everything should work.
 
 ### Linux
 #### Download the executable from releases
-- [amd64/x86_64/x64](https://github.com/xypwn/Dischord/releases/download/latest/dischord-linux-amd64)
-- [i386/x86](https://github.com/xypwn/Dischord/releases/download/latest/dischord-linux-x86)
-- [arm64 (untested)](https://github.com/xypwn/Dischord/releases/download/latest/dischord-linux-arm64)
-- [armhf/arm32 (untested)](https://github.com/xypwn/Dischord/releases/download/latest/dischord-linux-arm32)
+- [amd64/x86_64/x64](https://github.com/xypwn/dischord/releases/latest/download/dischord-linux-amd64)
+- [i386/x86](https://github.com/xypwn/dischord/releases/latest/download/dischord-linux-x86)
+- [arm64 (untested)](https://github.com/xypwn/dischord/releases/latest/download/dischord-linux-arm64)
+- [armhf/arm32 (untested)](https://github.com/xypwn/dischord/releases/latest/download/dischord-linux-arm32)
 
 #### Preparations
 After you're done downloading, I would recommend putting the executable into a new
