@@ -8,7 +8,7 @@
 - [Windows](#windows)
 - [MacOS](#macos)
 - [Linux](#linux)
-- [From source (BSDs etc.)](#from-source)
+- [From source](#from-source)
 
 ### Windows
 #### Download .exe from releases
@@ -99,7 +99,7 @@ token = "dmMpDY4K8dFyqMoypaZg3QXP.QUp5Sg.e7VQhRpEfud6SajSvyFZpxZpVwwBrwNYr2L3m7"
 
 Done! Now you can just run the executable and everything should work.
 
-### From source (BSDs etc.)
+### From source
 
 After installing [go](https://go.dev/dl/), you can simply run the makefile to
 build a native binary.
