@@ -1,4 +1,4 @@
-module dischord
+module git.nobrain.org/r4/dischord
 
 go 1.18
 
