@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+systemctl disable --now dischord.service || true

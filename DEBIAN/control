@@ -1,0 +1,6 @@
+Package: dischord
+Version: 0.1
+Maintainer: r4
+Architecture: amd64
+Description: Discord music bot, supports YouTube, Spotify and many other sites
+Depends: youtube-dl, ffmpeg

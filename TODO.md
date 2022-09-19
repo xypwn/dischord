@@ -1,0 +1,4 @@
+- Replace the fmt.Prints in `player/player.go` with proper logging
+- Add /skip
+- Add expressions like -18..45 or -18..-2 to delete
+- Decide on whether to keep `make install` and the Debian package template
