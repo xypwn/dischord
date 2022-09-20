@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	ErrNoSearchResults      = errors.New("no search provider available")
+	ErrNoSearchResults      = errors.New("no search results")
 	ErrNoSearchProvider     = errors.New("no search provider available")
 	ErrNoSuggestionProvider = errors.New("no search suggestion provider available")
 )
