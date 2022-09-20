@@ -19,9 +19,9 @@ import (
 )
 
 var (
-	ErrUnsupportedOSAndArch = errors.New("no download available for your operating system and hardware architecture")
+	ErrUnsupportedOSAndArch  = errors.New("no download available for your operating system and hardware architecture")
 	ErrFileNotFoundInArchive = errors.New("file not found in archive")
-	ErrUnsupportedArchive = errors.New("unsupported archive format (supported are .tar, .tar.gz, .tar.xz and .zip")
+	ErrUnsupportedArchive    = errors.New("unsupported archive format (supported are .tar, .tar.gz, .tar.xz and .zip")
 )
 
 func download(executable bool, urlsByOS map[string]map[string]string, progCallback func(progress float32)) (filename string, err error) {
@@ -85,7 +85,7 @@ func download(executable bool, urlsByOS map[string]map[string]string, progCallba
 			}
 		}
 		if progCallback != nil && size != 0 {
-			progCallback(float32(i)/float32(size))
+			progCallback(float32(i) / float32(size))
 		}
 	}
 	return savePath, nil

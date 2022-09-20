@@ -22,8 +22,8 @@ var (
 )
 
 type Config struct {
-	Token string `toml:"bot-token"`
-	FfmpegPath string `toml:"ffmpeg-path"`
+	Token      string           `toml:"bot-token"`
+	FfmpegPath string           `toml:"ffmpeg-path"`
 	Extractors extractor.Config `toml:"extractors"`
 }
 
@@ -125,7 +125,7 @@ func Autoconf(filename string) (*Config, error) {
 	}
 
 	download := func(executable bool, urlsByOS map[string]map[string]string) (filename string, err error) {
-		filename, err = download(executable, urlsByOS, func(progress float32){
+		filename, err = download(executable, urlsByOS, func(progress float32) {
 			fmt.Printf("Progress: %.1f%%\r", progress*100.0)
 		})
 		if err != nil {
@@ -152,18 +152,18 @@ func Autoconf(filename string) (*Config, error) {
 	if youtubeDlPath == "" {
 		fmt.Println("Downloading youtube-dl")
 		filename, err := download(true, map[string]map[string]string{
-				"windows": {
-					"amd64": "https://yt-dl.org/downloads/latest/youtube-dl.exe",
-					"386": "https://yt-dl.org/downloads/latest/youtube-dl.exe",
-				},
-				"any": {
-					"any": "https://yt-dl.org/downloads/latest/youtube-dl",
-				},
-			})
+			"windows": {
+				"amd64": "https://yt-dl.org/downloads/latest/youtube-dl.exe",
+				"386":   "https://yt-dl.org/downloads/latest/youtube-dl.exe",
+			},
+			"any": {
+				"any": "https://yt-dl.org/downloads/latest/youtube-dl",
+			},
+		})
 		if err != nil {
 			return nil, err
 		}
-		youtubeDlPath = "./"+filename
+		youtubeDlPath = "./" + filename
 		macosEnableExecutable(youtubeDlPath)
 		if python3IsPython {
 			// Replace first line with `replacement`
@@ -195,21 +195,21 @@ func Autoconf(filename string) (*Config, error) {
 		}
 		fmt.Println("Downloading FFmpeg")
 		filename, err := download(false, map[string]map[string]string{
-				"linux": {
-					"amd64": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz",
-					"386": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-i686-static.tar.xz",
-					"arm64": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-static.tar.xz",
-					"arm": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armhf-static.tar.xz",
-				},
-				"windows": {
-					"amd64": "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip",
-					"386": "https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/releases/download/latest/ffmpeg-n5.1-latest-win32-gpl-5.1.zip",
-				},
-				"darwin": {
-					"amd64": "https://evermeet.cx/ffmpeg/getrelease/zip",
-					"arm64": "https://www.osxexperts.net/FFmpeg511ARM.zip",
-				},
-			})
+			"linux": {
+				"amd64": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz",
+				"386":   "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-i686-static.tar.xz",
+				"arm64": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-static.tar.xz",
+				"arm":   "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armhf-static.tar.xz",
+			},
+			"windows": {
+				"amd64": "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip",
+				"386":   "https://github.com/sudo-nautilus/FFmpeg-Builds-Win32/releases/download/latest/ffmpeg-n5.1-latest-win32-gpl-5.1.zip",
+			},
+			"darwin": {
+				"amd64": "https://evermeet.cx/ffmpeg/getrelease/zip",
+				"arm64": "https://www.osxexperts.net/FFmpeg511ARM.zip",
+			},
+		})
 		if err != nil {
 			return nil, err
 		}
@@ -220,7 +220,7 @@ func Autoconf(filename string) (*Config, error) {
 		if err := os.Remove(filename); err != nil {
 			return nil, err
 		}
-		cfg.FfmpegPath = "./"+targetFile
+		cfg.FfmpegPath = "./" + targetFile
 		macosEnableExecutable(cfg.FfmpegPath)
 	} else {
 		fmt.Println("Using FFmpeg executable found at", cfg.FfmpegPath)

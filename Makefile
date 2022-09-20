@@ -12,6 +12,9 @@ debug:
 	$(GO) build -o $(EXE) -gcflags=all="-N -l" cmd/$(EXE)/*.go
 	dlv exec ./dischord
 
+fmt:
+	find . -type f -name '*.go' -exec gofmt -w '{}' ';'
+
 install: all
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	cp -f $(EXE) $(DESTDIR)$(PREFIX)/bin
@@ -50,7 +53,7 @@ uninstall:
 test:
 	$(GO) test -count=1 -v $(EXE)/extractor
 
-.PHONY: all debug install uninstall clean
+.PHONY: all debug fmt install uninstall clean
 
 clean:
 	rm -f $(EXE)

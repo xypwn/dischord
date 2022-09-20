@@ -10,6 +10,7 @@ import (
 	"git.nobrain.org/r4/dischord/player"
 	"git.nobrain.org/r4/dischord/util"
 
+	_ "embed"
 	"errors"
 	"flag"
 	"fmt"
@@ -21,7 +22,6 @@ import (
 	"strings"
 	"sync"
 	"syscall"
-	_ "embed"
 )
 
 var copyright bool
@@ -147,7 +147,7 @@ func main() {
 	cfgfile := "config.toml"
 	var cfg *config.Config
 	var err error
-	if autoconf || func() bool {cfg, err = config.Load(cfgfile); return err != nil}() {
+	if autoconf || func() bool { cfg, err = config.Load(cfgfile); return err != nil }() {
 		if err != nil {
 			if os.IsNotExist(err) {
 				fmt.Println("Configuration file not found, launching automatic configurator.")

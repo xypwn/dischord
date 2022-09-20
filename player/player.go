@@ -82,8 +82,8 @@ type CmdAddBack []extractor.Data
 type CmdSeek float64  // seconds
 type CmdSpeed float64 // speed factor
 type CmdPlayFileAndStop struct {
-	DoneCh   chan<- struct{}
-	Data []byte
+	DoneCh chan<- struct{}
+	Data   []byte
 }
 type CmdGetTime chan<- float64
 type CmdGetQueue chan<- *Queue
@@ -522,8 +522,8 @@ func NewClient(excfg extractor.Config, ffmpegPath string, outCh chan<- []byte, c
 						refreshStream(getPlaybackTime(), float64(v))
 					case CmdPlayFileAndStop:
 						cmd := struct {
-							DoneCh   chan<- struct{}
-							Data []byte
+							DoneCh chan<- struct{}
+							Data   []byte
 						}(v)
 
 						audioch, errch, killch = audio.StreamToDiscordOpus(ffmpegPath, "pipe:", bytes.NewReader(cmd.Data), 0, 1.0, false)

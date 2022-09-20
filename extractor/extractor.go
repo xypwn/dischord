@@ -14,10 +14,10 @@ var (
 )
 
 var (
-	providers  []provider
-	extractors []extractor
-	searchers  []searcher
-	suggestors []suggestor
+	providers     []provider
+	extractors    []extractor
+	searchers     []searcher
+	suggestors    []suggestor
 	defaultConfig Config
 )
 
@@ -125,9 +125,9 @@ func (cfg Config) CheckTypes() error {
 			if got != expected {
 				return &ConfigTypeError{
 					Provider: provider,
-					Key: k,
+					Key:      k,
 					Expected: expected,
-					Got: got,
+					Got:      got,
 				}
 			}
 		}
@@ -137,9 +137,9 @@ func (cfg Config) CheckTypes() error {
 
 type ConfigTypeError struct {
 	Provider string
-	Key string
+	Key      string
 	Expected reflect.Type
-	Got reflect.Type
+	Got      reflect.Type
 }
 
 func (e *ConfigTypeError) Error() string {
@@ -151,7 +151,7 @@ func (e *ConfigTypeError) Error() string {
 	if e.Got != nil {
 		gotName = e.Got.Name()
 	}
-	return "extractor config type error: "+e.Provider+"."+e.Key+": expected "+expectedName+" but got "+gotName
+	return "extractor config type error: " + e.Provider + "." + e.Key + ": expected " + expectedName + " but got " + gotName
 }
 
 type ProviderConfig map[string]any
