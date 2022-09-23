@@ -22,7 +22,7 @@ var (
 )
 
 func Extract(cfg Config, input string) ([]Data, error) {
-	if err := cfg.CheckTypes(); err != nil {
+	if err := cfg.CheckValidity(); err != nil {
 		return nil, err
 	}
 	for _, e := range extractors {
@@ -45,7 +45,7 @@ func Extract(cfg Config, input string) ([]Data, error) {
 }
 
 func Search(cfg Config, input string) ([]Data, error) {
-	if err := cfg.CheckTypes(); err != nil {
+	if err := cfg.CheckValidity(); err != nil {
 		return nil, err
 	}
 	for _, s := range searchers {
@@ -59,7 +59,7 @@ func Search(cfg Config, input string) ([]Data, error) {
 }
 
 func Suggest(cfg Config, input string) ([]string, error) {
-	if err := cfg.CheckTypes(); err != nil {
+	if err := cfg.CheckValidity(); err != nil {
 		return nil, err
 	}
 	for _, s := range suggestors {
@@ -115,16 +115,16 @@ func DefaultConfig() Config {
 	}
 }
 
-func (cfg Config) CheckTypes() error {
-	for provider, pCfg := range cfg {
-		if pCfg == nil {
-			return fmt.Errorf("extractor config for %v is nil", provider)
+func (cfg Config) CheckValidity() error {
+	for chkProvider, chkCfg := range DefaultConfig() {
+		if _, ok := cfg[chkProvider]; !ok {
+			return fmt.Errorf("extractor config for %v is nil", chkProvider)
 		}
-		for k, v := range pCfg {
-			got, expected := reflect.TypeOf(v), reflect.TypeOf(DefaultConfig()[provider][k])
+		for k, v := range chkCfg {
+			expected, got := reflect.TypeOf(v), reflect.TypeOf(cfg[chkProvider][k])
 			if got != expected {
 				return &ConfigTypeError{
-					Provider: provider,
+					Provider: chkProvider,
 					Key:      k,
 					Expected: expected,
 					Got:      got,
@@ -151,7 +151,7 @@ func (e *ConfigTypeError) Error() string {
 	if e.Got != nil {
 		gotName = e.Got.Name()
 	}
-	return "extractor config type error: " + e.Provider + "." + e.Key + ": expected " + expectedName + " but got " + gotName
+	return "invalid extractor configuration: " + e.Provider + "." + e.Key + ": expected " + expectedName + " but got " + gotName
 }
 
 type ProviderConfig map[string]any

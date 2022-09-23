@@ -97,14 +97,20 @@ func macosEnableExecutable(filename string) error {
 // configuration file does not exist or is invalid.
 func Load(filename string) (*Config, error) {
 	cfg := &Config{}
-	_, err := toml.DecodeFile(filename, cfg)
+	meta, err := toml.DecodeFile(filename, cfg)
 	if err != nil {
+		if pe, ok := err.(toml.ParseError); ok {
+			fmt.Println(pe.ErrorWithUsage())
+		}
 		return nil, err
+	}
+	if undec := meta.Undecoded(); len(undec) > 0 {
+		return nil, fmt.Errorf("%v: field '%v' could not be decoded", filename, undec[0])
 	}
 	if cfg.Token == defaultToken || cfg.Token == "" {
 		return nil, ErrTokenNotSet
 	}
-	if err := cfg.Extractors.CheckTypes(); err != nil {
+	if err := cfg.Extractors.CheckValidity(); err != nil {
 		return nil, err
 	}
 	if _, err := exec.LookPath(cfg.Extractors["youtube-dl"]["youtube-dl-path"].(string)); err != nil {
