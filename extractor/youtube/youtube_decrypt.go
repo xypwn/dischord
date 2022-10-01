@@ -140,7 +140,7 @@ func getDecryptFunction(baseJs string) (string, error) {
 	}
 	fn := baseJs[start+len(startMatch):]
 	end := strings.Index(fn, endMatch)
-	if start == -1 {
+	if end == -1 {
 		return "", ErrDecryptGettingFunction
 	}
 	return fn[:end], nil
@@ -170,7 +170,7 @@ func getDecryptOps(baseJs string) ([]decryptorOp, error) {
 		}
 		ops = baseJs[start+len(startMatch):]
 		end := strings.Index(ops, endMatch)
-		if start == -1 {
+		if end == -1 {
 			return nil, ErrDecryptGettingOpTable
 		}
 		ops = ops[:end]
