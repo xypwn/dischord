@@ -51,7 +51,7 @@ uninstall:
 	rm -f $(DESTDIR)$(CFGPREFIX)/systemd/system/$(EXE).service
 
 test:
-	$(GO) test -count=1 -v $(EXE)/extractor
+	$(GO) test -count=1 -v git.nobrain.org/r4/dischord/extractor/
 
 .PHONY: all debug fmt install uninstall clean
 
