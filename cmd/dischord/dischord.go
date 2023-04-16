@@ -45,7 +45,7 @@ type UserError struct {
 }
 
 const (
-	interactionFlags = uint64(dc.MessageFlagsEphemeral)
+	interactionFlags = dc.MessageFlagsEphemeral
 )
 
 var (
@@ -111,10 +111,10 @@ func (m *MessageWriter) Message(d *MessageData) error {
 		})
 	} else if m.thinking {
 		_, err = m.session.InteractionResponseEdit(m.interaction, &dc.WebhookEdit{
-			Content:    d.Content,
+			Content:    &d.Content,
 			Files:      d.Files,
-			Components: d.Components,
-			Embeds:     d.Embeds,
+			Components: &d.Components,
+			Embeds:     &d.Embeds,
 		})
 	} else {
 		_, err = m.session.FollowupMessageCreate(m.interaction, true, &dc.WebhookParams{
