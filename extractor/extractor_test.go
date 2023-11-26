@@ -123,7 +123,7 @@ func TestYoutubeMusicVideoMulti(t *testing.T) {
 
 func TestYoutubePlaylist(t *testing.T) {
 	cfg := extractor.DefaultConfig()
-	cfg["YouTube"]["Require direct playlist URL"] = "true"
+	cfg["youtube"]["require-direct-playlist-url"] = true
 
 	url := "https://www.youtube.com/watch?v=jdUXfsMTv7o&list=PLdImBTpIvHA1xN1Dfw2Ec5NQ5d-LF3ZP5"
 	pUrl := "https://www.youtube.com/playlist?list=PLdImBTpIvHA1xN1Dfw2Ec5NQ5d-LF3ZP5"

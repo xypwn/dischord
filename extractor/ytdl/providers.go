@@ -14,7 +14,7 @@ type Extractor struct{}
 
 func (e *Extractor) DefaultConfig() extractor.ProviderConfig {
 	return extractor.ProviderConfig{
-		"youtube-dl-path": "youtube-dl",
+		"youtube-dl-path": "yt-dlp",
 	}
 }
 
